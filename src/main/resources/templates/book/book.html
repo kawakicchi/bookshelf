@@ -165,7 +165,7 @@ window.onload = function(){
 	<div layout:fragment="content">
 		<div class="my-gallery">
 			<figure th:each="curPage : ${pageList}">
-				<a href="/page/1" th:href="@{/page/{seq}(seq = ${curPage.seq})}" data-size="1000x665">
+				<a href="/page/1" th:href="@{/page/{seq}(seq = ${curPage.seq})}"  th:attr="data-size=${curPage.width} + 'x' + ${curPage.height}">
 					<img src="/page/1" th:src="@{/page/{seq}(seq = ${curPage.seq})}" alt="" />
 				</a>
 				<figcaption th:text="${curPage.name}">キャプション1</figcaption>

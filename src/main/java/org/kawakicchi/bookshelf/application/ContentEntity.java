@@ -23,11 +23,15 @@ import java.io.File;
 public class ContentEntity {
 	private String name;
 	private File file;
+	private int width;
+	private int height;
 
-	public ContentEntity(String name, File file) {
+	public ContentEntity(String name, File file, int width, int height) {
 		super();
 		this.name = name;
 		this.file = file;
+		this.width = width;
+		this.height = height;
 	}
 
 	/**
@@ -46,6 +50,24 @@ public class ContentEntity {
 	 */
 	public File getFile() {
 		return file;
+	}
+
+	/**
+	 * width を取得する。
+	 * 
+	 * @return width
+	 */
+	public int getWidth() {
+		return width;
+	}
+
+	/**
+	 * height を取得する。
+	 * 
+	 * @return height
+	 */
+	public int getHeight() {
+		return height;
 	}
 
 }

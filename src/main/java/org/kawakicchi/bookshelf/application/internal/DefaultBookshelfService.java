@@ -51,14 +51,14 @@ public class DefaultBookshelfService implements BookshelfService {
 		Book book = new Book(null, BookTitle.of(title));
 		book = Book.create(book, bookRepository);
 
-		Series series = Series.get(new Sequence<Series>(seriesSeq), bookRepository);
-		if (null != series) {
+		if (null != seriesSeq) {
+			Series series = Series.get(new Sequence<Series>(seriesSeq), bookRepository);
 			series.appendBook(book, bookRepository);
 		}
 
 		for (ContentEntity content : contents) {
 
-			Page page = new Page(null, PageName.of(content.getName()));
+			Page page = new Page(null, PageName.of(content.getName()), content.getWidth(), content.getHeight());
 			page = Page.create(page, bookRepository);
 
 			book.appendPage(page, bookRepository);

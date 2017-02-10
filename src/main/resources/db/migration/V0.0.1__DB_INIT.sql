@@ -25,7 +25,9 @@ CREATE TABLE td_page
 (
   page_seq bigserial NOT NULL,
   name text NOT NULL,
-  CONSTRAINT page_book PRIMARY KEY (page_seq)
+  width integer NOT NULL DEFAULT 0,
+  height integer NOT NULL DEFAULT 0,
+  CONSTRAINT pk_page PRIMARY KEY (page_seq)
 )
 WITH (
   OIDS=FALSE

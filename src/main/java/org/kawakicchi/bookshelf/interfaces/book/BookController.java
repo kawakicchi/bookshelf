@@ -15,6 +15,7 @@
  */
 package org.kawakicchi.bookshelf.interfaces.book;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -25,6 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+
+import javax.imageio.ImageIO;
 
 import org.kawakicchi.bookshelf.application.BookEntity;
 import org.kawakicchi.bookshelf.application.BookshelfService;
@@ -41,6 +44,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.drew.imaging.ImageMetadataReader;
+import com.drew.imaging.ImageProcessingException;
+import com.drew.metadata.Directory;
+import com.drew.metadata.Metadata;
+import com.drew.metadata.Tag;
 
 /**
  * @author kawakicchi
@@ -133,9 +142,26 @@ public class BookController {
 
 				oStream.close();
 
+				Metadata metadata = ImageMetadataReader.readMetadata(tmpFile);
+				for (Directory directory : metadata.getDirectories()) {
+					for (Tag tag : directory.getTags()) {
+						System.out.format("[%s] - %s = %s", directory.getName(), tag.getTagName(), tag.getDescription());
+					}
+					if (directory.hasErrors()) {
+						for (String error : directory.getErrors()) {
+							System.err.format("ERROR: %s", error);
+						}
+					}
+				}
+
+				BufferedImage img = ImageIO.read(tmpFile);
+				System.out.println(String.format("%d / %d", img.getWidth(), img.getHeight()));
+
 				String[] ss = entry.getName().split("/");
-				files.add(new ContentEntity(ss[ss.length - 1], tmpFile));
+				files.add(new ContentEntity(ss[ss.length - 1], tmpFile, img.getWidth(), img.getHeight()));
 			}
+		} catch (ImageProcessingException ex) {
+
 		} catch (IOException ex) {
 
 		}

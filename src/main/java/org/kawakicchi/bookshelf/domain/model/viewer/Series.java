@@ -87,7 +87,7 @@ public class Series implements Serializable {
 	}
 
 	public Page getTitlePage(final BookRepository repository) {
-		Page page = new Page(new Sequence<Page>(1L), PageName.of(""));
+		Page page = new Page(new Sequence<Page>(1L), PageName.of(""), 100, 100);
 		return page;
 	}
 }

@@ -2,6 +2,8 @@
 SELECT
     C.page_seq
   , C.name
+  , C.width
+  , C.height
 FROM
     td_book      A
   , tr_book_page B

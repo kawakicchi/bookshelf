@@ -24,16 +24,22 @@ public class PageEntity {
 
 	private Long seq;
 	private String name;
+	private int width;
+	private int height;
 
-	public PageEntity(Long seq, String name) {
+	public PageEntity(Long seq, String name, int width, int height) {
 		super();
 		this.seq = seq;
 		this.name = name;
+		this.width = width;
+		this.height = height;
 	}
 
 	public PageEntity(Page page) {
 		this.seq = page.getPageSeq().getValue();
 		this.name = page.getName().getValue();
+		this.width = page.getWidth();
+		this.height = page.getHeight();
 	}
 
 	/**
@@ -52,6 +58,24 @@ public class PageEntity {
 	 */
 	public String getName() {
 		return name;
+	}
+
+	/**
+	 * width を取得する。
+	 * 
+	 * @return width
+	 */
+	public int getWidth() {
+		return width;
+	}
+
+	/**
+	 * height を取得する。
+	 * 
+	 * @return height
+	 */
+	public int getHeight() {
+		return height;
 	}
 
 }

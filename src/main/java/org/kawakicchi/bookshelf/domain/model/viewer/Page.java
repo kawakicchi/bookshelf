@@ -36,10 +36,16 @@ public class Page {
 
 	private final PageName name;
 
-	public Page(Sequence<Page> pageSeq, PageName name) {
+	private final int width;
+
+	private final int height;
+
+	public Page(Sequence<Page> pageSeq, PageName name, int width, int height) {
 		super();
 		this.pageSeq = pageSeq;
 		this.name = name;
+		this.width = width;
+		this.height = height;
 	}
 
 	/**
@@ -58,6 +64,24 @@ public class Page {
 	 */
 	public PageName getName() {
 		return name;
+	}
+
+	/**
+	 * width を取得する。
+	 * 
+	 * @return width
+	 */
+	public int getWidth() {
+		return width;
+	}
+
+	/**
+	 * height を取得する。
+	 * 
+	 * @return height
+	 */
+	public int getHeight() {
+		return height;
 	}
 
 	public static Page create(final Page page, final BookRepository repository) {
