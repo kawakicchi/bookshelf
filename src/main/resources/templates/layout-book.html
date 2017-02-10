@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<title layout:title-pattern="$CONTENT_TITLE - Bookshelf">Book - Bookshelf</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta charset="UTF-8" />
+
+	<link href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" media="screen" />
+	<style>
+	html,
+	body {
+		height: 100%;
+	}
+	/* Wrapper for page content to push down footer */
+	#wrap {
+		min-height: 100%;
+		height: auto !important;
+		height: 100%;
+		/* Negative indent footer by it's height */
+		margin: 0 auto -60px;
+	}
+	
+	/* Set the fixed height of the footer here */
+	#push,
+	#footer {
+		height: 60px;
+	}
+	#footer {
+		background-color: #f5f5f5;
+	}
+	
+	/* Lastly, apply responsive CSS fixes as necessary */
+	@media (max-width: 767px) {
+		#footer {
+			margin-left: -20px;
+			margin-right: -20px;
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+	}
+	
+	/* Custom page CSS
+	-------------------------------------------------- */
+	/* Not required for template or sticky footer method. */
+	
+	.container {
+		width: auto;
+	}
+	.container .credit {
+		margin: 20px 0;
+	}
+	</style>
+	<link href="/css/bootstrap-responsive.css" th:href="@{/css/bootstrap-responsive.css}" rel="stylesheet" />
+
+</head>
+
+<body>
+
+	<div id="wrap">
+		<div class="container" style="padding-top: 60px;">
+			<div layout:include="component :: menubar" th:remove="tag"></div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+
+			<div layout:include="component :: sidebar-book" th:remove="tag"></div>
+
+        </div><!--/span-->
+        <div class="span9">
+			<div class="container" layout:fragment="content"></div>
+		</div>
+	</div>
+</div>
+
+		</div>
+		<div id="push"></div>
+	</div>
+
+	<div layout:include="component :: footer" th:remove="tag"></div>
+
+	<script src="/js/jquery-3.1.1.min.js" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+	<script src="/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<body>
+
+<div layout:fragment="menubar">
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<button type="button" class="btn btn-navbar" data-toggle="collapse"
+					data-target=".nav-collapse">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="brand" href="#">Bookshelf</a>
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li ><a href="/" th:href="@{/}">Home</a></li>
+						<li th:class="(${selectMenuBar} == 'series') ? 'active' : ''" ><a href="/series" th:href="@{/series}">Series</a></li>
+						<li th:class="(${selectMenuBar} == 'book') ? 'active' : ''" ><a href="/book" th:href="@{/book}">Book</a></li>
+					</ul>
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div layout:fragment="sidebar-series">
+	<div class="well sidebar-nav">
+		<ul class="nav nav-list">
+			<li class="nav-header" th:if="${seriesList}">Series</li>
+			<li th:each="curSeries : ${seriesList}" th:class="(${series} != null and ${series.seq} == ${curSeries.seq} ) ? 'active' : ''">
+				<a href="/series/1" th:href="@{/series/{seq}(seq = ${curSeries.seq})}" th:text="${curSeries.name}">Link</a>
+			</li>
+			<li class="nav-header">Maintenance</li>
+			<li><a href="/series/store" th:href="@{/series/store}">Store</a></li>
+			<li class="active"><a href="#">Link</a></li>
+			<li><a href="#">Link <span class="badge badge-success">2</span></a></li>
+			<li><a href="#">Link</a></li>
+		</ul>
+	</div><!--/.well -->
+</div>
+
+<div layout:fragment="sidebar-book">
+	<div class="well sidebar-nav">
+		<ul class="nav nav-list">
+			<li class="nav-header" th:if="${bookList}">Book</li>
+			<li th:each="curBook : ${bookList}" th:class="(${book} != null and ${book.seq} == ${curBook.seq} ) ? 'active' : ''">
+				<a href="/book/1" th:href="@{/book/{seq}(seq = ${curBook.seq})}" th:text="${curBook.title}">Link</a>
+			</li>
+			<li class="nav-header">Maintenance</li>
+			<li><a href="/book/store" th:href="@{/book/store}">Store</a></li>
+			<li class="active"><a href="#">Link</a></li>
+			<li><a href="#">Link <span class="badge badge-success">2</span></a></li>
+			<li><a href="#">Link</a></li>
+		</ul>
+	</div><!--/.well -->
+</div>
+
+<div layout:fragment="footer">
+	<div id="footer">
+		<div class="container">
+			<p class="muted credit">
+				&copy; 2017 Kawakicchi.org
+			</p>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

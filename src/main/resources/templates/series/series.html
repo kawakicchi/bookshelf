@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout-series">
+<head>
+	<title th:text="${series.name}">Series Name</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="col-md-12 well">
+			<h3 th:text="${series.name}">Series Name</h3>
+			<div>
+				<ul>
+					<li th:text="${value1}">value</li>
+					<li th:text="${value2}">value</li>
+					<li th:text="${value3}">value</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

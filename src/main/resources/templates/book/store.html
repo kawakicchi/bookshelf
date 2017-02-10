@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout-book">
+<head>
+	<title>Book</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<form th:object="${form}" action="/book/store" th:action="@{/book/store}" method="post" enctype="multipart/form-data" class="form-horizontal">
+			<fieldset>
+				<legend>Book</legend>
+				<div class="control-group">
+					<label class="control-label" for="inputTitle">Title</label>
+					<div class="controls">
+						<input type="text" th:field="*{title}" id="inputTitle" placeholder="Title" />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputSeries">Series</label>
+					<div class="controls">
+						<select th:field="*{series}" id="inputSeries">
+							<option value="">-</option>
+							<option th:each="curSeries : ${seriesList}" th:value="${curSeries.seq}" th:text="${curSeries.name}">Series</option>
+						</select>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputFile">File</label>
+					<div class="controls">
+						<input type="file" th:field="*{file}" id="inputFile" placeholder="Zip file" />
+					</div>
+				</div>
+
+				<div class="control-group">
+					<div class="controls">
+						<button type="submit" class="btn">Submit</button>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</body>
+</html>

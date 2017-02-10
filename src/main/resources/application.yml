@@ -1,0 +1,44 @@
+spring:
+  profiles:
+    active: local
+
+  thymeleaf:
+    cache: true
+
+  messages:
+    basename : i18n/message, i18n/validation, i18n/field
+    cache-seconds : -1
+    encoding : UTF-8
+
+  http:
+    multipart:
+      max-file-size: 512MB
+      max-request-size: 512MB
+
+server:
+  port: 7777
+
+
+flyway:
+  enabled : false
+
+---
+spring:
+  profiles: local
+
+  thymeleaf:
+    cache: false
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/db_sample3
+    username: sample
+    password: sample
+    driverClassName: org.postgresql.Driver
+
+doma:
+  dialect : POSTGRES
+
+flyway:
+  enabled : true
+  placeholders:
+    owner : sample
